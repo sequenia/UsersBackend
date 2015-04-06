@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
       # for every request. If you want the token to work as a
       # sign in token, you can simply remove store: false.
       sign_in user, store: false
+    else
+      render :status => 401,
+             :json => { :success => false,
+                        :info => "Not authorized",
+                        :data => {} }
     end
   end
 end

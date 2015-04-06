@@ -15,7 +15,6 @@ class Api::V1::SessionsController < Devise::SessionsController
          :json => { :success => true,
                     :info => "Logged in",
                     :data => { :auth_token => user.authentication_token } }
-    
   end
 
   def destroy
