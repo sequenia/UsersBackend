@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
 
   validates :login, presence: true, uniqueness: true
+  validates :password_confirmation, presence: true
 
   private
 
