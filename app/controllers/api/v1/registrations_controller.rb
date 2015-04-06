@@ -2,10 +2,11 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   skip_before_filter :verify_authenticity_token,
                      :if => Proc.new { |c| c.request.format == 'application/json' }
 
+  skip_before_filter :authenticate_user_from_token!
+
   respond_to :json
 
   def create
-    puts sign_up_params
     build_resource(sign_up_params)
 
     if resource.save
@@ -17,7 +18,8 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     else
       render :status => :unprocessable_entity,
              :json => { :success => false,
-                        :info => resource.errors }
+                        :info => resource.errors,
+                        :data => {} }
     end
   end
 
