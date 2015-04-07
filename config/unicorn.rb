@@ -1,21 +1,23 @@
 # Устанавливаем количество процессов на сервере (Чем больше поток пользователей, тем больше нужно процессов)
+application = "Appname"
+
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 
-working_directory "/var/www/apps/#{ENV["APPNAME"]}/current" # available in 0.94.0+
+working_directory "/var/www/apps/#{application}/current" # available in 0.94.0+
 
 # Слушаем Unix domain socket и TCP порт
-listen "/var/www/apps/#{ENV["APPNAME"]}/socket/.unicorn.sock", :backlog => 64
+listen "/var/www/apps/#{application}/socket/.unicorn.sock", :backlog => 64
 listen 8080, :tcp_nopush => true
 
 # уничтожаем workers после 30 секунд вместо 60 дефолтных
 timeout 30
 
 # Устанавливаем путь к PID файлу главного процесса unicorn
-pid "/var/www/apps/ИМЯ_ПРИЛОЖЕНИЯ/run/unicorn.pid"
+pid "/var/www/apps/#{ENV["APPNAME"]}/run/unicorn.pid"
 
 # Направляем потоки вывода
-stderr_path "/var/www/apps/#{ENV["APPNAME"]}/log/unicorn.stderr.log"
-stdout_path "/var/www/apps/#{ENV["APPNAME"]}/log/unicorn.stdout.log"
+stderr_path "/var/www/apps/#{application}/log/unicorn.stderr.log"
+stdout_path "/var/www/apps/#{application}/log/unicorn.stdout.log"
 
 # Подгружаем приложение в память до того, как произойдет форк процессов. (Типа для memory savings)
 preload_app true
