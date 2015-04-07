@@ -35,7 +35,7 @@ gem 'devise'
 gem 'unicorn'
 
 # Upstars scripts
-gem 'foreman'
+gem 'foreman', '0.63.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
