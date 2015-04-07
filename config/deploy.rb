@@ -10,7 +10,7 @@ set :scm, :git
 set :repo_url, 'git@github.com:sequenia/UsersBackend.git'
 set :branch, 'production'
 set :rvm_type, :user
-set :rvm_ruby_version, '2.0.0-p481'
+set :rvm_ruby_version, '2.1.1'
 
 namespace :foreman do
   desc 'Start server'
