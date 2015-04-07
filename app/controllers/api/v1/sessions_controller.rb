@@ -2,7 +2,8 @@ class Api::V1::SessionsController < Devise::SessionsController
   skip_before_filter :verify_authenticity_token,
                      :if => Proc.new { |c| c.request.format == 'application/json' }
 
-  skip_before_filter :authenticate_user_from_token!
+  skip_before_filter :authenticate_user_from_token!, only: [:create, :failure]
+  skip_before_filter :verify_signed_out_user, only: :destroy
 
   respond_to :json
 
@@ -18,7 +19,6 @@ class Api::V1::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    authenticate_user_from_token!
     current_user.update_column(:authentication_token, nil)
     render :status => 200,
            :json => { :success => true,
