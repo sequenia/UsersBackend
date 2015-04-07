@@ -2,6 +2,7 @@
 lock '3.1.0'
 
 application = "Appname"
+deployer_user = "rails_deployer"
 set :application, "#{application}"
 set :deploy_to, "/var/www/apps/#{application}"
 set :deploy_via, :copy
@@ -103,7 +104,7 @@ namespace :deploy do
 
       within current_path do
         execute "cd #{current_path}"
-        execute :bundle, "exec foreman export upstart #{foreman_temp} -a #{application} -u ИМЯ_ПОЛЬЗОВАТЕЛЯ_СИСТЕМЫ -l /var/www/apps/#{application}/log -d #{current_path}"
+        execute :bundle, "exec foreman export upstart #{foreman_temp} -a #{application} -u #{deployer_user} -l /var/www/apps/#{application}/log -d #{current_path}"
       end
       sudo "mv #{foreman_temp}/* /etc/init/"
       sudo "rm -r #{foreman_temp}"
