@@ -13,7 +13,7 @@ listen 8080, :tcp_nopush => true
 timeout 30
 
 # Устанавливаем путь к PID файлу главного процесса unicorn
-pid "/var/www/apps/#{ENV["APPNAME"]}/run/unicorn.pid"
+pid "/var/www/apps/#{application}/run/unicorn.pid"
 
 # Направляем потоки вывода
 stderr_path "/var/www/apps/#{application}/log/unicorn.stderr.log"
