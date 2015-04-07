@@ -1,28 +1,48 @@
-== README
+== Rails 4
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Установлено:
 
-Things you may want to cover:
+* Rails версии 4.2.0
 
-* Ruby version
+* База данных postgresql
 
-* System dependencies
+* Конфиги для сервера nginx
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Capistrano
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Организовано:
+
+* Таблица пользователей
+
+* API для регистрации, входа и выхода
+
+* Автоматическое разворачивание приложения на удаленном сервере
+
+Внимание: приложение разворачивается из ветки production
+
+
+Для работы:
+
+* Удалите папку .git
+
+* Создайте пустой локальный репозиторий: git init
+
+* Раскоментируйте строчки в .gitignore, помеченные комментарием # Uncomment this
+
+* В файле /.env задайте свои значения переменным DATABASE_USERNAME и DATABASE_PASSWORD
+
+* В файле /shared/.env задайте значения всем переменным. Этот файл будет задействован на сервере
+
+* В файлах /shared/Procfile, /shared/nginx.conf, /config/deploy.rb смените Appname на имя вашего приложения
+
+* В файле /config/deploy/production.rb задайте адрес сервера, пользователя и пароль для деплоя
+
+* Создайте репозиторий на github
+
+* Создайте ветку production
+
+
+Разворачивание:
+Первый раз выполните cap production deploy:setup
+Далее выполняйте cap production deploy

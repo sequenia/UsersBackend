@@ -7,7 +7,7 @@ set :application, "#{application}"
 set :deploy_to, "/var/www/apps/#{application}"
 set :deploy_via, :copy
 set :scm, :git
-set :repo_url, 'git@github.com:sequenia/UsersBackend.git'
+set :repo_url, 'git@github.com:GithubUser/RepoName.git'
 set :branch, 'production'
 set :rvm_type, :user
 set :rvm_ruby_version, '2.1.1'
